@@ -51,7 +51,7 @@ CREATE TABLE material_usage (
     site_id INTEGER,
     mat_id INTEGER,
     quantity_used DECIMAL,
-    date DATE,
+    usage_date DATE,
 
     FOREIGN KEY (site_id) REFERENCES sites(site_id),
     FOREIGN KEY (mat_id) REFERENCES materials(mat_id)
