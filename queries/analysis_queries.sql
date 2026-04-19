@@ -43,3 +43,13 @@ SELECT
     model
 FROM equipment
 WHERE current_status = 'Idle';
+
+-- Example usage of views
+
+SELECT * FROM site_overview;
+
+SELECT * FROM site_material_cost;
+
+SELECT * FROM equipment_maintenance_history;
+
+SELECT * FROM idle_equipment;
