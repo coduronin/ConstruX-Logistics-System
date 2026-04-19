@@ -1,11 +1,5 @@
 # ConstruX: Integrated Site Logistics & Resource Management System
 
-### Team Members & Roles
-* **Architect:** [Name] - Database Design & Schema
-* **SQL Developer:** [Name] - Query Development
-* **QA Lead:** [Name] - Data Integrity & Testing
-* **Documentation Lead:** [Name] - Technical Writing & Repo Management
-
 ---
 
 ## Project Overview
