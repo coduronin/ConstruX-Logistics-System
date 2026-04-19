@@ -64,5 +64,5 @@ CREATE TABLE maintenance_logs (
     service_date DATE,
     description TEXT,
 
-    FOREIGN KEY (equip_id) REFERENCES equipment(equip_id)
+    FOREIGN KEY (equip_id) REFERENCES equipment(equip_id) ON DELETE CASCADE 
 );
