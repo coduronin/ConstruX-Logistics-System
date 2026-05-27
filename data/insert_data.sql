@@ -9,7 +9,7 @@ VALUES
 ('Kuzey Marmara Lojistik Merkezi', 'Arnavutköy, İstanbul', 'Govt (Industrial)', '2024-07-01', '2025-12-31'),
 ('Altın Boynuz Kentsel Dönüşüm', 'Fatih, İstanbul', 'Urban Renewal', '2024-08-15', '2028-06-30'),
 ('Boğaziçi Panorama Evleri', 'Sarıyer, İstanbul', 'Luxury Residential', '2024-09-03', '2028-04-15'),
-('Teknopark İstanbul Genişleme', 'Pendik, İstanbul', 'Govt (Tech/Office)', '2024-10-01', '2026-08-31');
+('Teknopark İstanbul Genişleme', 'Pendik, İstanbul', 'Govt (Tech/Office)', '2024-10-01', '2026-08-31'),
 ('Marmara Otoyol Viyadüğü', 'Silivri, İstanbul', 'Government (Infrastructure)', '2024-11-01', '2025-08-19'),
 ('Ankara Kentsel Yaşam Evleri', 'Etimesgut, Ankara', 'Modern Residential', '2024-11-15', '2025-10-29'),
 ('İzmir Liman Depolama Sahası', 'Aliağa, İzmir', 'Govt (Industrial)', '2024-12-01', '2025-11-07'), 
@@ -29,7 +29,7 @@ VALUES
 ('Bodrum Marina Villaları', 'Bodrum, Muğla', 'Coastal Residential', '2025-01-10', '2025-04-07'),       
 ('Eskişehir Raylı Sistem', 'Odunpazarı, Eskişehir', 'Government (Infrastructure)', '2025-01-15', '2025-03-31'), 
 ('Nilüfer Yaşam ve AVM', 'Nilüfer, Bursa', 'Residential/Mall', '2025-02-01', '2025-04-17'),            
-('Çukurova Güneş Santrali', 'Ceyhan, Adana', 'Govt (Industrial)', '2025-02-10', '2025-05-09'); 
+('Çukurova Güneş Santrali', 'Ceyhan, Adana', 'Govt (Industrial)', '2025-02-10', '2025-05-09'),
 ('Kars Baraj Regülatörü', 'Merkez, Kars', 'Government (Infrastructure)', '2025-03-01', '2025-06-15'), 
 ('Kemer Butik Otel', 'Kemer, Antalya', 'Luxury Residential', '2025-03-10', '2025-04-20'),              
 ('Bornova Sanayi Sitesi', 'Bornova, İzmir', 'Govt (Industrial)', '2025-04-01', '2025-07-10'),           
@@ -39,7 +39,7 @@ VALUES
 ('Trabzon Karayolu Tüneli', 'Maçka, Trabzon', 'Government (Infrastructure)', '2025-06-01', '2025-11-15'), 
 ('Konya Ovası Sulama Kanalları', 'Ereğli, Konya', 'Government (Infrastructure)', '2025-06-15', '2025-12-01'),
 ('Gaziantep OSB Hangarı', 'Şehitkamil, Gaziantep', 'Govt (Industrial)', '2025-07-01', '2025-10-30'), 
-('Samsun Akıllı Şehir Ofisi', 'Atakum, Samsun', 'Govt (Tech/Office)', '2025-07-15', '2025-12-20'); 
+('Samsun Akıllı Şehir Ofisi', 'Atakum, Samsun', 'Govt (Tech/Office)', '2025-07-15', '2025-12-20'), 
 ('Urla Bağ Evleri', 'Urla, İzmir', 'Coastal Residential', '2025-08-01', '2026-03-15'),
 ('Kuzey Ege Konteyner Limanı', 'Çandarlı, İzmir', 'Government (Infrastructure)', '2025-08-15', '2027-02-01'),
 ('Keçiören Metrosu Uzatma', 'Keçiören, Ankara', 'Government (Infrastructure)', '2025-09-01', '2027-05-30'),
@@ -122,7 +122,7 @@ VALUES
 ('Hasan Ozturk', 'Çelik Konstrüksiyon İşçisi', 26),
 ('Can Koc', 'Ağır Vasıta Operatörü', 30),
 ('Selim Aydin', 'İnşaat Marangozu', 21),
-('Mustafa Gunes', 'İş Güvenliği Denetçisi', 35);
+('Mustafa Gunes', 'İş Güvenliği Denetçisi', 35),
 ('Serkan Bulut', 'Beton İşçisi', 19.0),
 ('Hüseyin Çetin', 'Elektrik Teknisyeni', 25.5),
 ('Murat Yıldız', 'Operatör', 33.0),
@@ -225,7 +225,7 @@ VALUES
 ('Wheel Loader', 'Volvo L120H', 'Idle'),
 ('Generator', 'Caterpillar C15', 'Active'),
 ('Dump Truck', 'Mercedes Arocs 3245', 'Active'),
-('Drilling Rig', 'Atlas Copco ROC D7C', 'Maintenance');
+('Drilling Rig', 'Atlas Copco ROC D7C', 'Maintenance'),
 ('Excavator', 'Hitachi ZX210', 'Active'),
 ('Tower Crane', 'Potain MCT 85', 'Active'),
 ('Concrete Pump', 'Putzmeister BSF 36', 'Active'),
@@ -328,7 +328,7 @@ VALUES
 ('Crushed Gravel 20mm', 'm3', 25),
 ('Ceramic Floor Tile', 'm2', 12.5),
 ('Rockwool Insulation', 'm2', 7.8),
-('PVC Drainage Pipe 100mm', 'm', 4.2);
+('PVC Drainage Pipe 100mm', 'm', 4.2),
 ('Epoxy Coating Rebar', 'kg', 1.45),
 ('White Portland Cement', 'bag (50kg)', 12.20),
 ('High-Strength Concrete C50', 'm3', 125.00),
@@ -390,7 +390,7 @@ VALUES
 (6, 7, 9, '2024-06-18'),
 (7, 9, NULL, '2024-07-08'),
 (8, 5, 8, '2024-08-20'),
-(9, 10, NULL, '2024-09-10');
+(9, 10, NULL, '2024-09-10'),
 (11, 3, 1, '2024-11-05'), 
 (11, 1, 3, '2024-11-06'), 
 (12, 4, 2, '2024-11-20'),  
@@ -515,7 +515,7 @@ VALUES
 (6, 7, 400, '2024-06-22'),
 (7, 8, 800, '2024-07-15'),
 (8, 9, 1500, '2024-08-25'),
-(9, 10, 600, '2024-09-15');
+(9, 10, 600, '2024-09-15'),
 (11, 1, 752, '2024-11-12'),  
 (11, 3, 150, '2024-11-25'),  
 (12, 3, 1463, '2024-12-01'), 
@@ -528,7 +528,7 @@ VALUES
 (17, 8, 620, '2025-03-01'),   
 (18, 10, 310, '2025-03-10'),  
 (19, 3, 1895, '2025-04-01'),  
-(20, 9, 430, '2025-04-15');   
+(20, 9, 430, '2025-04-15'),   
 (21, 1, 513, '2024-11-15'),  
 (21, 3, 162, '2024-11-20'),  
 (22, 4, 674, '2024-11-18'),  
@@ -541,7 +541,7 @@ VALUES
 (27, 7, 430, '2025-02-01'),  
 (28, 1, 1500, '2025-02-10'), 
 (29, 8, 640, '2025-02-18'),  
-(30, 9, 300, '2025-03-01');
+(30, 9, 300, '2025-03-01'),
 (31, 11, 513, '2024-11-15'),
 (32, 13, 162, '2024-11-20'),
 (33, 1, 300, '2024-11-22'),
@@ -659,7 +659,7 @@ VALUES
 (8, '2024-08-05', 'Fuel injector cleaning and load test'),
 (5, '2024-09-10', 'Mast lubrication and brake adjustment'),
 (6, '2024-10-01', 'Belt replacement and vibration plate calibration'),
-(9, '2024-10-20', 'Transmission service and rear tire rotation');
+(9, '2024-10-20', 'Transmission service and rear tire rotation'),
 (1, '2024-11-15', 'Hydraulic hose replacement and fluid top-up'),
 (2, '2024-12-20', 'Motor brush inspection and electronic control calibration'),
 (3, '2025-01-05', 'High-pressure pipe cleaning and valve greasing'),
