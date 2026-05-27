@@ -19,7 +19,7 @@ VALUES
 ('Eskişehir Öğrenci Rezidansı', 'Tepebaşı, Eskişehir', 'Modern Residential', '2025-02-01', '2025-09-01'),
 ('Adana Enerji Hatları Dağıtım', 'Ceyhan, Adana', 'Government (Infrastructure)', '2025-02-15', '2025-09-13'), 
 ('Kocaeli Karma Alışveriş Merkezi', 'Gebze, Kocaeli', 'Residential/Mall', '2025-03-01', '2025-09-27'), 
-('Muğla Eko-Köy Evleri', 'Milas, Muğla', 'Coastal Residential', '2025-03-15', '2025-09-24'); 
+('Muğla Eko-Köy Evleri', 'Milas, Muğla', 'Coastal Residential', '2025-03-15', '2025-09-24'),
 ('Ege Otoban Genişletme', 'Bornova, İzmir', 'Government (Infrastructure)', '2024-11-10', '2025-01-01'), 
 ('Çankaya İkiz Kuleler', 'Çankaya, Ankara', 'Modern Residential', '2024-11-15', '2024-11-30'),        
 ('Toros Tünel İnşaatı', 'Akseki, Antalya', 'Government (Infrastructure)', '2024-12-01', '2025-02-11'), 
@@ -377,7 +377,7 @@ VALUES
 ('Hydrated Lime Powder', 'bag (25kg)', 5.20),
 ('Marble Slab Travertine', 'm2', 35.00),
 ('Terracotta Facade Tile', 'm2', 29.00),
-('Intumescent Fire Paint', 'kg', 12.50),
+('Intumescent Fire Paint', 'kg', 12.50);
 
 INSERT INTO assignments (site_id, worker_id, equip_id, assignment_date)
 VALUES
@@ -402,7 +402,7 @@ VALUES
 (17, 5, 2, '2025-02-05'), 
 (18, 10, NULL, '2025-02-18'),
 (19, 3, 1, '2025-03-02'), 
-(20, 1, 3, '2025-03-20'); 
+(20, 1, 3, '2025-03-20'),
 (21, 3, 1, '2024-11-11'),  
 (21, 1, 9, '2024-11-12'),  
 (22, 4, 2, '2024-11-16'),  
@@ -415,7 +415,7 @@ VALUES
 (27, 9, 6, '2025-01-12'),  
 (28, 10, NULL, '2025-01-16'),
 (29, 5, 2, '2025-02-02'),  
-(30, 4, 8, '2025-02-12');
+(30, 4, 8, '2025-02-12'),
 (31, 11, 11, '2024-11-11'),
 (32, 13, 19, '2024-11-12'),
 (33, 1, 9, '2024-11-12'),
@@ -504,7 +504,7 @@ VALUES
 (116, 97, 99, '2028-06-05'),
 (117, 98, 97, '2028-06-20');
 
-INSERT INTO material_usage (site_id, mat_id, quantity_used, date)
+INSERT INTO material_usage (site_id, mat_id, quantity_used, usage_date)
 VALUES
 (1, 1, 5000, '2024-01-25'),
 (1, 3, 200, '2024-01-28'),
@@ -667,7 +667,7 @@ VALUES
 (8, '2025-02-10', 'Alternator check and radiator flush'),
 (9, '2025-03-01', 'Brake pad replacement and front axle alignment'),
 (4, '2025-03-25', 'Engine overhaul and undercarriage track adjustment'),
-(6, '2025-04-12', 'Vibratory drum shock absorber replacement');
+(6, '2025-04-12', 'Vibratory drum shock absorber replacement'),
 (11, '2024-11-28', 'High vibration detected (36.5 Hz). Hydraulic pump recalibrated.'),
 (14, '2024-12-15', 'Track tension adjustment and undercarriage cleaning.'),
 (20, '2024-12-28', 'Drilling rig rotation gear lubrication and pressure sensor replacement.'),
