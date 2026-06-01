@@ -66,3 +66,31 @@ CREATE TABLE maintenance_logs (
 
     FOREIGN KEY (equip_id) REFERENCES equipment(equip_id) ON DELETE CASCADE 
 );
+DROP TABLE IF EXISTS purchase_orders;
+CREATE TABLE purchase_orders (
+    po_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    site_id INTEGER,
+    mat_id INTEGER,
+    quantity_ordered INTEGER,
+    unit_price DECIMAL,
+    order_date DATE,
+    supplier TEXT,
+    delivery_status TEXT,
+    
+    FOREIGN KEY (site_id) REFERENCES sites(site_id),
+    FOREIGN KEY (mat_id) REFERENCES materials(mat_id)
+);
+
+DROP TABLE IF EXISTS attendance;
+CREATE TABLE attendance (
+    attendance_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    worker_id INTEGER,
+    site_id INTEGER,
+    work_date DATE,
+    hours_worked DECIMAL, 
+    overtime_hours DECIMAL,
+    status TEXT,
+    
+    FOREIGN KEY (worker_id) REFERENCES labor(worker_id),
+    FOREIGN KEY (site_id) REFERENCES sites(site_id)
+);
