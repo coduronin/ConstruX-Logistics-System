@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ConstruX.API.DTOs;
 using ConstruX.API.Services;
@@ -33,6 +34,7 @@ public class MaterialsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<MaterialDto>> Create(MaterialCreateDto dto)
     {
         var created = await _materialService.CreateAsync(dto);
@@ -40,6 +42,7 @@ public class MaterialsController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<MaterialDto>> Update(int id, MaterialCreateDto dto)
     {
         var updated = await _materialService.UpdateAsync(id, dto);
@@ -48,6 +51,7 @@ public class MaterialsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         var deleted = await _materialService.DeleteAsync(id);

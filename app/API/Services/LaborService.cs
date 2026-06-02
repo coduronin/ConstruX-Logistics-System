@@ -44,7 +44,10 @@ public class LaborService : ILaborService
         {
             Name = dto.Name,
             TradeSpecialty = dto.TradeSpecialty,
-            HourlyRate = dto.HourlyRate
+            HourlyRate = dto.HourlyRate,
+            Username = dto.Username,
+            Password = dto.Password,
+            IsAdmin = dto.IsAdmin
         };
 
         _context.Labor.Add(labor);
@@ -61,6 +64,12 @@ public class LaborService : ILaborService
         labor.Name = dto.Name;
         labor.TradeSpecialty = dto.TradeSpecialty;
         labor.HourlyRate = dto.HourlyRate;
+        labor.Username = dto.Username;
+        if (!string.IsNullOrEmpty(dto.Password))
+        {
+            labor.Password = dto.Password;
+        }
+        labor.IsAdmin = dto.IsAdmin;
 
         await _context.SaveChangesAsync();
         return MapToDto(labor);
@@ -88,6 +97,8 @@ public class LaborService : ILaborService
         WorkerId = labor.WorkerId,
         Name = labor.Name,
         TradeSpecialty = labor.TradeSpecialty,
-        HourlyRate = labor.HourlyRate
+        HourlyRate = labor.HourlyRate,
+        Username = labor.Username,
+        IsAdmin = labor.IsAdmin
     };
 }

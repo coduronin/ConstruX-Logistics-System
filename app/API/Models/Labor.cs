@@ -21,6 +21,15 @@ public class Labor
     [Column("hourly_rate")]
     public decimal? HourlyRate { get; set; }
 
+    [Column("username")]
+    public string? Username { get; set; }
+
+    [Column("password")]
+    public string? Password { get; set; }
+
+    [Column("isAdmin")]
+    public bool IsAdmin { get; set; }
+
     // Navigation properties
     public ICollection<Assignment> Assignments { get; set; } = new List<Assignment>();
 }

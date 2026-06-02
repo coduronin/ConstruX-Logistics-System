@@ -1,6 +1,68 @@
 @ConstruX.API_HostAddress = http://localhost:5182
 
-GET {{ConstruX.API_HostAddress}}/weatherforecast/
+# Auth Endpoint Tests
+### Sign In
+POST {{ConstruX.API_HostAddress}}/api/Auth/signin
+Content-Type: application/json
 Accept: application/json
 
+{
+  "username": "ahmet.yilmaz",
+  "password": "ahmet123"
+}
+
+### Sign Up
+POST {{ConstruX.API_HostAddress}}/api/Auth/signup
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Test Worker",
+  "tradeSpecialty": "Operator",
+  "hourlyRate": 25.0,
+  "username": "test.worker",
+  "password": "testpassword123"
+}
+
 ###
+
+# Labor Endpoint Authorization Tests
+### Get All (Admin - Expect 200)
+GET {{ConstruX.API_HostAddress}}/api/Labor
+X-Worker-Id: 1
+Accept: application/json
+
+### Get All (Non-Admin - Expect 403)
+GET {{ConstruX.API_HostAddress}}/api/Labor
+X-Worker-Id: 2
+Accept: application/json
+
+### Get Self (Expect 200)
+GET {{ConstruX.API_HostAddress}}/api/Labor/2
+X-Worker-Id: 2
+Accept: application/json
+
+### Get Other (Non-Admin - Expect 403)
+GET {{ConstruX.API_HostAddress}}/api/Labor/3
+X-Worker-Id: 2
+Accept: application/json
+
+### Get Other (Admin - Expect 200)
+GET {{ConstruX.API_HostAddress}}/api/Labor/3
+X-Worker-Id: 1
+Accept: application/json
+
+### Create Labor (Non-Admin - Expect 403)
+POST {{ConstruX.API_HostAddress}}/api/Labor
+X-Worker-Id: 2
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Unauthorized Worker",
+  "tradeSpecialty": "Beton İşçisi",
+  "hourlyRate": 20.0,
+  "username": "unauthorized",
+  "password": "password123",
+  "isAdmin": false
+}

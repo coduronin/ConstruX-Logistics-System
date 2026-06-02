@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ConstruX.API.DTOs;
 using ConstruX.API.Services;
@@ -18,9 +20,25 @@ public class AssignmentsController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<AssignmentDto>>> GetAll()
     {
+        var isCallerAdmin = User.IsInRole("Admin");
         var assignments = await _assignmentService.GetAllAsync();
+
+        if (!isCallerAdmin)
+        {
+            var callerIdStr = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (int.TryParse(callerIdStr, out int callerId))
+            {
+                assignments = assignments.Where(a => a.WorkerId == callerId);
+            }
+            else
+            {
+                return Forbid();
+            }
+        }
+
         return Ok(assignments);
     }
 
@@ -29,10 +47,20 @@ public class AssignmentsController : ControllerBase
     {
         var assignment = await _assignmentService.GetByIdAsync(id);
         if (assignment == null) return NotFound();
+
+        var callerIdStr = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var isCallerAdmin = User.IsInRole("Admin");
+
+        if (!isCallerAdmin && (!int.TryParse(callerIdStr, out int callerId) || assignment.WorkerId != callerId))
+        {
+            return StatusCode(403, "You can only view your own assignments.");
+        }
+
         return Ok(assignment);
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<AssignmentDto>> Create(AssignmentCreateDto dto)
     {
         var created = await _assignmentService.CreateAsync(dto);
@@ -40,6 +68,7 @@ public class AssignmentsController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<AssignmentDto>> Update(int id, AssignmentCreateDto dto)
     {
         var updated = await _assignmentService.UpdateAsync(id, dto);
@@ -48,6 +77,7 @@ public class AssignmentsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         var deleted = await _assignmentService.DeleteAsync(id);

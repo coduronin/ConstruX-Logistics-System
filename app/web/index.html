@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConstruX - Logistics & Construction Management</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- App Custom Styles -->
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- MAIN LOGIN / SIGNUP SCREEN -->
+    <div id="auth-screen" class="auth-screen">
+        <div class="auth-card glass">
+            <div class="auth-header">
+                <div class="logo">
+                    <i class="fa-solid fa-helmet-safety accent-color"></i>
+                    <span>ConstruX</span>
+                </div>
+                <h2 id="auth-title">Welcome Back</h2>
+                <p id="auth-subtitle">Please sign in to access the system</p>
+            </div>
+            
+            <form id="auth-form" autocomplete="off">
+                <!-- Signup Only Fields -->
+                <div id="signup-fields" class="hidden">
+                    <div class="form-group">
+                        <label for="reg-name">Full Name</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-user"></i>
+                            <input type="text" id="reg-name" placeholder="John Doe">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-specialty">Trade Specialty</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-briefcase"></i>
+                            <select id="reg-specialty">
+                                <option value="">Select Specialty</option>
+                                <option value="Beton İşçisi">Concrete Worker</option>
+                                <option value="Elektrik Teknisyeni">Electrical Technician</option>
+                                <option value="Operatör">Machine Operator</option>
+                                <option value="Sertifikalı Kaynakçı">Certified Welder</option>
+                                <option value="Tesisat Ustası">Plumbing Master</option>
+                                <option value="İskeleci">Scaffolder</option>
+                                <option value="Çelik Konstrüksiyon İşçisi">Steel Construction Worker</option>
+                                <option value="Ağır Vasıta Operatörü">Heavy Vehicle Operator</option>
+                                <option value="İnşaat Marangozu">Construction Carpenter</option>
+                                <option value="İş Güvenliği Denetçisi">Safety Auditor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-rate">Hourly Rate ($)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            <input type="number" id="reg-rate" step="0.5" placeholder="25.00">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Username & Password (Both) -->
+                <div class="form-group">
+                    <label for="auth-username">Username</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="text" id="auth-username" required placeholder="username">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="auth-password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="auth-password" required placeholder="••••••••">
+                    </div>
+                </div>
+
+                <button type="submit" id="auth-submit-btn" class="btn-primary">
+                    <span>Sign In</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p id="auth-toggle-text">Don't have an account? <a href="#" id="auth-toggle-link">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN PORTAL CONTAINER (SHOWN WHEN LOGGED IN) -->
+    <div id="portal-screen" class="portal-screen hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass">
+            <div class="sidebar-brand">
+                <div class="logo">
+                    <i class="fa-solid fa-helmet-safety accent-color"></i>
+                    <div>
+                        <h2>ConstruX</h2>
+                        <span>Management System</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <!-- Dynamically populated by JS based on user role -->
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile" id="user-profile-button">
+                    <div class="avatar" id="user-avatar">U</div>
+                    <div class="user-info">
+                        <h4 id="user-display-name">Loading...</h4>
+                        <span id="user-display-role">Worker</span>
+                    </div>
+                    <button class="logout-btn" id="logout-button" title="Sign Out">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1 id="page-title">Dashboard</h1>
+                    <p id="page-subtitle" class="text-secondary">System-wide real-time logistics and analytics</p>
+                </div>
+                
+                <div class="header-right">
+                    <div class="search-bar glass">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="global-search" placeholder="Search projects, workers, equipment...">
+                    </div>
+                    <div class="notifications">
+                        <button class="icon-btn glass" title="Notifications">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                    </div>
+                    <button class="btn-primary" id="header-action-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>New Project</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dynamic Workspace Content View -->
+            <div id="view-workspace" class="view-workspace">
+                <!-- Content will be dynamically injected here by app.js -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Form overlay -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal glass">
+            <div class="modal-header">
+                <h3 id="modal-title">New Entry</h3>
+                <button class="close-btn" id="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-content">
+                <!-- Modal forms injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- App Script -->
+    <script src="app.js" type="module"></script>
+</body>
+</html>
