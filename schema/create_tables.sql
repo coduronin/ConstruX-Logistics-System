@@ -13,7 +13,10 @@ CREATE TABLE labor (
     worker_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     trade_specialty TEXT,
-    hourly_rate DECIMAL CHECK (hourly_rate > 0)
+    hourly_rate DECIMAL CHECK (hourly_rate > 0),
+    username TEXT UNIQUE,
+    password TEXT,
+    isAdmin BOOLEAN DEFAULT 0
 );
 
 DROP TABLE IF EXISTS equipment;
