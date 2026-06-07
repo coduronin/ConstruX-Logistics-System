@@ -15,6 +15,7 @@ public interface IAssignmentService
     Task<AssignmentDto> CreateAsync(AssignmentCreateDto dto);
     Task<AssignmentDto?> UpdateAsync(int id, AssignmentCreateDto dto);
     Task<bool> DeleteAsync(int id);
+    Task<bool> IsEquipmentAssignedAsync(int equipId, DateOnly date);
 }
 
 public class AssignmentService : IAssignmentService
@@ -87,6 +88,12 @@ public class AssignmentService : IAssignmentService
         _context.Assignments.Remove(assignment);
         await _context.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<bool> IsEquipmentAssignedAsync(int equipId, DateOnly date)
+    {
+        return await _context.Assignments
+            .AnyAsync(a => a.EquipId == equipId && a.AssignmentDate == date);
     }
 
     private static AssignmentDto MapToDto(Assignment assignment) => new()
