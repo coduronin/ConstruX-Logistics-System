@@ -53,3 +53,19 @@ SELECT * FROM site_material_cost;
 SELECT * FROM equipment_maintenance_history;
 
 SELECT * FROM idle_equipment;
+
+-- Trigger to prevent double assignment of equipment on the same date
+CREATE TRIGGER trg_prevent_double_assignment
+BEFORE INSERT ON assignments
+BEGIN
+    SELECT
+    CASE
+        WHEN EXISTS (
+            SELECT 1
+            FROM assignments
+            WHERE equip_id = NEW.equip_id
+            AND assignment_date = NEW.assignment_date
+        )
+        THEN RAISE(ABORT, 'Equipment already assigned')
+    END;
+END;
