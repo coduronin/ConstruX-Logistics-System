@@ -90,9 +90,34 @@ public class EquipmentController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<EquipmentDto>> Update(int id, EquipmentCreateDto dto)
     {
+        var isCallerAdmin = User.IsInRole("Admin");
+        if (!isCallerAdmin)
+        {
+            var callerIdStr = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (int.TryParse(callerIdStr, out int callerId))
+            {
+                var isAssigned = await _context.Assignments
+                    .AnyAsync(a => a.WorkerId == callerId && a.EquipId == id);
+
+                if (!isAssigned)
+                {
+                    return StatusCode(403, "You are not assigned to this equipment.");
+                }
+            }
+            else
+            {
+                return Forbid();
+            }
+
+            var existing = await _equipmentService.GetByIdAsync(id);
+            if (existing == null) return NotFound();
+
+            dto.Type = existing.Type;
+            dto.Model = existing.Model;
+        }
+
         var updated = await _equipmentService.UpdateAsync(id, dto);
         if (updated == null) return NotFound();
         return Ok(updated);
