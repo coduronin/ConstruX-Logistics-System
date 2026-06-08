@@ -59,21 +59,55 @@ public class AssignmentsController : ControllerBase
         return Ok(assignment);
     }
 
+    [HttpGet("check-availability")]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult<bool>> CheckAvailability([FromQuery] int equipId, [FromQuery] string date)
+    {
+        if (DateOnly.TryParse(date, out var parsedDate))
+        {
+            var isAssigned = await _assignmentService.IsEquipmentAssignedAsync(equipId, parsedDate);
+            return Ok(isAssigned);
+        }
+        return BadRequest("Invalid date format. Use YYYY-MM-DD.");
+    }
+
     [HttpPost]
     [Authorize(Roles = "Admin")]
     public async Task<ActionResult<AssignmentDto>> Create(AssignmentCreateDto dto)
     {
-        var created = await _assignmentService.CreateAsync(dto);
-        return CreatedAtAction(nameof(GetById), new { id = created.AssignId }, created);
+        try
+        {
+            var created = await _assignmentService.CreateAsync(dto);
+            return CreatedAtAction(nameof(GetById), new { id = created.AssignId }, created);
+        }
+        catch (Microsoft.EntityFrameworkCore.DbUpdateException ex) when (ex.InnerException?.Message.Contains("Equipment already assigned") == true || ex.Message.Contains("Equipment already assigned"))
+        {
+            return BadRequest("Equipment already assigned on this date.");
+        }
+        catch (System.Exception ex) when (ex.Message.Contains("Equipment already assigned"))
+        {
+            return BadRequest("Equipment already assigned on this date.");
+        }
     }
 
     [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]
     public async Task<ActionResult<AssignmentDto>> Update(int id, AssignmentCreateDto dto)
     {
-        var updated = await _assignmentService.UpdateAsync(id, dto);
-        if (updated == null) return NotFound();
-        return Ok(updated);
+        try
+        {
+            var updated = await _assignmentService.UpdateAsync(id, dto);
+            if (updated == null) return NotFound();
+            return Ok(updated);
+        }
+        catch (Microsoft.EntityFrameworkCore.DbUpdateException ex) when (ex.InnerException?.Message.Contains("Equipment already assigned") == true || ex.Message.Contains("Equipment already assigned"))
+        {
+            return BadRequest("Equipment already assigned on this date.");
+        }
+        catch (System.Exception ex) when (ex.Message.Contains("Equipment already assigned"))
+        {
+            return BadRequest("Equipment already assigned on this date.");
+        }
     }
 
     [HttpDelete("{id}")]
