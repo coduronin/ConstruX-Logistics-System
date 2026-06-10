@@ -4,6 +4,8 @@ This project is a relational database designed to manage the logistics of large-
 
 By centralizing everything into one SQL-based system, we can prevent common site errors—like scheduling a worker for a machine that is actually down for maintenance, or sending a crew to a site that doesn't have the necessary materials in stock yet.
 
+VIDEO LINK:
+https://drive.google.com/drive/folders/1Oo6Ik9uv9kBtGVjiH8iN1j9Ln829K7le
 ---
 
 ## The Problem
